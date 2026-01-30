@@ -6,7 +6,7 @@
             {{$job['title']}} - {{$job['description']}}
         </li>
         @empty
-        <li>No jobs avaiable</li>
+        <li>No Jobs Avaiable</li>
         @endforelse
     </ul>
 </x-layout>  
