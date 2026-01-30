@@ -1,14 +1,12 @@
 <x-layout>
     <h1>Avaiable Jobs</h1>
-    @if(!empty($jobs))
     <ul>
-        @foreach($jobs as $job)
+        @forelse($jobs as $job)
         <li>
-            {{$job}}
+            {{$job['title']}} - {{$job['description']}}
         </li>
-        @endforeach
+        @empty
+        <li>No jobs avaiable</li>
+        @endforelse
     </ul>
-    @else
-    <p>No jobs avaiable</p>
-    @endif
 </x-layout>  
