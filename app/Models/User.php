@@ -47,7 +47,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function jobListings() :HasMany {
+    public function jobListings() :hasMany {
             return $this->hasMany(Job::class);
     }
 }

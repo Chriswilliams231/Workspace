@@ -37,7 +37,7 @@ return new class extends Migration
             $table->string('company_website')->nullable();
 
             // Adding the user foriegn key contraints
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -47,6 +47,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('job_listings', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
+
             $table->dropColumn(['salary', 'tags', 'job_type', 'remote', 
             'requirements', 'benefits', 'address', 'city', 
             'state', 'zipcode', 'contact_email', 'contact_phone', 
