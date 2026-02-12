@@ -22,7 +22,7 @@
                                 Remote
                             </span>
                             @else
-                                 <span class="text-xs bg-red-500 text-white rounded-full px-2 py-1 ml-2">
+                                 <span class="text-xs bg-gray-500 text-white rounded-full px-2 py-1 ml-2">
                                 On-site
                             </span>
                             @endif

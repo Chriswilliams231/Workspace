@@ -9,17 +9,7 @@
             <h2 class="text-2xl font-bold mb-6 text-center text-gray-500">
                 Job Info
             </h2>
-
-            <div class="mb-4">
-                <label class="block text-gray-700" for="title">Job Title</label>
-                <input id="title" type="text" name="title"
-                    class="w-full px-4 py-2 border rounded focus:outline-none @error('title') border-red-500 @enderror"
-                    placeholder="Software Engineer" value="{{ old('title') }}" />
-                @error('title')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
+            <x-inputs.text id="title" name="title" label="Job Title" placeholder="Software Engineer" />
             <div class="mb-4">
                 <label class="block text-gray-700" for="description">Job Description</label>
                 <textarea cols="30" rows="7" id="description" name="description"
