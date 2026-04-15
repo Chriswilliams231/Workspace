@@ -31,6 +31,7 @@ class JobController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+       
         $validatedData = $request->validate([
             'title' => 'required|string|max:255', 
             'description' => 'required|string|max:255', 
@@ -55,6 +56,14 @@ class JobController extends Controller
         // Temp Hard coded User ID data
         $validatedData['user_id'] = 1;
 
+        // Checking for the image
+        if($request->hasFile('company_logo')){
+            // Store the file and get the path
+            $path = $request->file('company_logo')->store('logos', 'public');
+
+            // Add path to the database
+            $validatedData['company_logo'] = $path;
+        }
         Job::create($validatedData);
 
         return redirect()->route('jobs.index')->with('success', 'Job listing created.');
