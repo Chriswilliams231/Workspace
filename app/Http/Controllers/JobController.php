@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Job;
+use Illuminate\View\View;
 
 class JobController extends Controller
 {
@@ -80,9 +81,9 @@ class JobController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Job $job): View
     {
-        //
+        return view('jobs.edit')->with('job', $job);
     }
 
     /**
