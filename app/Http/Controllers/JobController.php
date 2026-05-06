@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Models\Job;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class JobController extends Controller
@@ -25,6 +26,9 @@ class JobController extends Controller
      */
     public function create()
     {
+        if(!Auth::check()){
+            return redirect()->route('login');
+        }
         return view('jobs.create');
     }
 
@@ -82,8 +86,11 @@ class JobController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Job $job): View
+    public function edit(Job $job)
     {
+        if(!Auth::check()){
+            return redirect()->route('login');
+        }
         return view('jobs.edit')->with('job', $job);
     }
 
@@ -92,6 +99,10 @@ class JobController extends Controller
      */
     public function update(Request $request, Job $job)
     {
+        if(!Auth::check()){
+            return redirect()->route('login');
+        }
+
         $validatedData = $request->validate([
             'title' => 'required|string|max:255', 
             'description' => 'required|string|max:255', 
@@ -135,6 +146,10 @@ class JobController extends Controller
      */
     public function destroy(Job $job): RedirectResponse
     {
+        if(!Auth::check()){
+            return redirect()->route('login');
+        }
+        
         if($job->company_logo) {
             // Delete the image
             Storage::disk('public')->delete($job->company_logo);

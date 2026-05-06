@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Routing\PendingResourceRegistration;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -12,8 +13,8 @@ use App\Http\Controllers\RegisterController;
 // Get Methods 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 // Route::resource('jobs', JobController::class);
-Route::resource('jobs', JobController::class)->middleware(['create', 'edit', 'update', 'distroy']);
-Route::resource('jobs', JobController::class)->withoutMiddleware(['show', 'edit', 'update', 'distroy']);
+Route::resource('jobs', JobController::class);
+Route::resource('jobs', JobController::class);
 
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
