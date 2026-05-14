@@ -26,9 +26,9 @@ class JobController extends Controller
      */
     public function create()
     {
-        if(!Auth::check()){
-            return redirect()->route('login');
-        }
+        // if(!Auth::check()){
+        //     return redirect()->route('login');
+        // }
         return view('jobs.create');
     }
 
@@ -60,7 +60,7 @@ class JobController extends Controller
         ]);
 
         // Temp Hard coded User ID data
-        $validatedData['user_id'] = 1;
+        $validatedData['user_id'] = auth()->user()->id;
 
         // Checking for the image
         if($request->hasFile('company_logo')){
@@ -88,9 +88,9 @@ class JobController extends Controller
      */
     public function edit(Job $job)
     {
-        if(!Auth::check()){
-            return redirect()->route('login');
-        }
+        // if(!Auth::check()){
+        //     return redirect()->route('login');
+        // }
         return view('jobs.edit')->with('job', $job);
     }
 
@@ -99,9 +99,9 @@ class JobController extends Controller
      */
     public function update(Request $request, Job $job)
     {
-        if(!Auth::check()){
-            return redirect()->route('login');
-        }
+        // if(!Auth::check()){
+        //     return redirect()->route('login');
+        // }
 
         $validatedData = $request->validate([
             'title' => 'required|string|max:255', 
@@ -149,7 +149,7 @@ class JobController extends Controller
         if(!Auth::check()){
             return redirect()->route('login');
         }
-        
+
         if($job->company_logo) {
             // Delete the image
             Storage::disk('public')->delete($job->company_logo);
