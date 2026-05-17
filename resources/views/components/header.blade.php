@@ -9,9 +9,21 @@
              <x-nav-link url="/jobs" :active="request()->is('jobs')">All Jobs</x-nav-link>
              @auth
                  <x-nav-link url="/jobs/saved" :active="request()->is('jobs/saved')">Save Jobs</x-nav-link>
-                 <x-nav-link url="/dashboard" :active="request()->is('dashboard')" icon="gauge">Dashboard</x-nav-link>
-                 <x-button-link url="/jobs/create" icon="edit">Create Job</x-button-link>
+                 {{-- <x-nav-link url="/dashboard" :active="request()->is('dashboard')" icon="gauge">Dashboard</x-nav-link> --}}
+
+                 <div class="flex items-center space-x-3">
+                     <a href="{{ route('dashboard') }}">
+                         @if (Auth::user()->avatar)
+                             <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}"
+                                 class="w-10 h-10 rounded-full">
+                         @else
+                             <img src="{{ asset('storage/avatars/test_avatar.png') }}" alt="{{ Auth::user()->name }}"
+                                 class="w-10 h-10 rounded-full">
+                         @endif
+                     </a>
+                 </div>
                  <x-logout-form />
+                 <x-button-link url="/jobs/create" icon="edit">Create Job</x-button-link>
              @else
                  <x-nav-link url="/login" :active="request()->is('login')">Login</x-nav-link>
                  <x-nav-link url="/register" :active="request()->is('register')">Register</x-nav-link>
