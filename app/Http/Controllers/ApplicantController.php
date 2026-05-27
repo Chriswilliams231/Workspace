@@ -37,4 +37,16 @@ class ApplicantController extends Controller
         return redirect()->back()->with('success', 'Your application has been submitted');
     }
     
+
+    //@route DELETE /applicant/{applicant}
+    public function destory($id): RedirectResponse{
+
+        $applicant = Applicant::findOrFail($id);
+
+        $applicant->delete();
+        
+
+        return redirect()->route('dashboard')->with('success', 'Applicant has been deleted');
+    }
+
 }

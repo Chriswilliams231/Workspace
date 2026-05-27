@@ -40,4 +40,5 @@ Route::delete('/bookmarks/{job}', [BookmarkController::class, 'destroy'])->name(
 
 
 Route::post('/jobs/{job}/apply', [ApplicantController::class, 'store'])->name('applicant.store')->middleware('auth');
+Route::delete('/applicant/{applicant}', [ApplicantController::class, 'destory'])->name('applicant.destory')->middleware('auth');
 
