@@ -17,6 +17,7 @@ use App\Http\Controllers\ApplicantController;
 // Get Methods 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 // Route::resource('jobs', JobController::class);
+Route::get('/jobs/search', [JobController::class, 'search'])->name('jobs.search');
 Route::resource('jobs', JobController::class)->middleware('auth')->only(['create','edit','update', 'destory']);
 Route::resource('jobs', JobController::class)->except(['create']);
 
